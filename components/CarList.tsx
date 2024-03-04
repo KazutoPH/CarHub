@@ -1,8 +1,14 @@
 import { fetchCars } from "@/utils"
-import { CarCard } from "."
+import { CarCard, ShowMore } from "."
 
-async function CarList() {
-  const allCars = await fetchCars()
+async function CarList({searchParams}:any) {
+  const allCars = await fetchCars({
+    manufacturer: searchParams.manufacturer || '',
+    year: searchParams.year || 2022,
+    fuel: searchParams.fuel || '',
+    limit: searchParams.limit || 10, 
+    model: searchParams.model || '',
+  })
   const isDataEmpty = !Array.isArray(allCars) || allCars.length<1 || !allCars 
 
   return (
@@ -14,6 +20,11 @@ async function CarList() {
           <CarCard car={car} key={index}/>
          ))}
         </div>
+
+        <ShowMore
+          pageNumber={(searchParams.limit || 10)/10}
+          isNext={(searchParams.limit || 10) > allCars.length}
+        />
       </section>
     ):(
       <div className="home__error-container">

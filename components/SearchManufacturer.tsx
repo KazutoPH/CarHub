@@ -19,7 +19,7 @@ const SearchManufacturer = ({ manufacturer, setManufacturer }: SearchManufacture
         )))
 
   return (
-    <div className='search-anufacturer'>
+    <div className='search-manufacturer'>
       <Combobox value={manufacturer} onChange={setManufacturer}>
         <div className='relative w-full'>
           <Combobox.Button className='absolute top-[14px]'>
@@ -46,7 +46,7 @@ const SearchManufacturer = ({ manufacturer, setManufacturer }: SearchManufacture
             afterLeave={() => setQuery('')}
           >
 
-            <Combobox.Options>
+            <Combobox.Options className='absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-20'>
               {filteredManufacturers.length === 0 &&
                 query !== "" ? (
                 <Combobox.Option

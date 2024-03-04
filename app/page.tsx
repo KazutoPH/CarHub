@@ -1,7 +1,8 @@
 import { CarList, CustomFilter, Hero, SearchBar } from "@/components";
+import { fuels, yearsOfProduction } from "@/constants";
 import Image from "next/image";
 
-export default function Home() {
+export default function Home({searchParams}:any) {
   return (
     <main className="overflow-hidden">
       <Hero/>
@@ -11,15 +12,15 @@ export default function Home() {
           <p>Export the cars you might like</p>
         </div>
 
-        <div className="home__fiter">
+        <div className="home__filters">
           <SearchBar/>
-          <div className="home__filter-cotainer">
-            <CustomFilter title="fuel" />
-            <CustomFilter title="year" />
+          <div className="home__filter-container">
+            <CustomFilter title="fuel" options={fuels} />
+            <CustomFilter title="year" options={yearsOfProduction}/>
           </div>
         </div>
-
-        <CarList/>
+ 
+        <CarList searchParams={searchParams}/>
       </div>
     </main>
   );
